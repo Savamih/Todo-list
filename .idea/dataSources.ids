@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="H2 - default@localhost" uuid="4a18998f-880a-4d77-af14-3ed9138b9c82">
+    <database-info product="H2" version="1.3.176 (2014-04-05)" jdbc-version="4.0" driver-name="H2 JDBC Driver" driver-version="1.3.176 (2014-04-05)">
+      <identifier-quote-string>&quot;</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/>
+    <schema name="PUBLIC" catalog="DEFAULT"/>
+    <table name="ARTICLE" schema="PUBLIC" catalog="DEFAULT" type="TABLE">
+      <column name="ARTICLE_ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNkEyRDc4MzJfNkMwRF80QUNBX0FGNTlfOUNGQTgzODhCRUM0KQ==" autoIncrement="true"/>
+      <column name="CONTENT" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PUBLICATION_DATE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CATEGORY" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="CONSTRAINT_F" columns="ARTICLE_ID"/>
+      <foreign-key name="FK_M7N2T9NK7YJOE1TJXH91DU4L9" columns="CATEGORY" ref-table="CATEGORY" ref-schema="PUBLIC" ref-catalog="DEFAULT" ref-columns="CATEGORY_ID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <index name="FK_M7N2T9NK7YJOE1TJXH91DU4L9_INDEX_F" unique="false" columns="CATEGORY"/>
+    </table>
+    <table name="CATEGORY" schema="PUBLIC" catalog="DEFAULT" type="TABLE">
+      <column name="CATEGORY_ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMjEwNDY4QzBfRTA1Ml80Mzk0Xzg1OUJfNUZBQjlGNTdBMzc3KQ==" autoIncrement="true"/>
+      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="CONSTRAINT_3" columns="CATEGORY_ID"/>
+      <exported-key name="FK_M7N2T9NK7YJOE1TJXH91DU4L9" table="ARTICLE" schema="PUBLIC" catalog="DEFAULT" columns="CATEGORY"/>
+      <exported-key name="FK_M7N2T9NK7YJOE1TJXH91DU4L9" table="ARTICLE" schema="PUBLIC" catalog="DEFAULT" columns="CATEGORY"/>
+      <index name="UK_GONQEYN8OJX2EQODR4MQF0JJ9_INDEX_3" unique="true" columns="NAME"/>
+    </table>
+    <table name="TASK" schema="PUBLIC" catalog="DEFAULT" type="TABLE">
+      <column name="TASK_ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfQTZEQ0U0N0NfMUYzQ180N0Q5Xzk1MDNfQTY3MDA0QzIyOEQ3KQ==" autoIncrement="true"/>
+      <column name="DESCRIPTION" sqlType="CLOB" precision="2147483647" scale="0" nullable="true" jdbcType="2005"/>
+      <column name="CREATE_DATE" sqlType="DATE" precision="8" scale="0" nullable="true" jdbcType="91"/>
+      <column name="DUE_DATE" sqlType="DATE" precision="8" scale="0" nullable="true" jdbcType="91"/>
+      <column name="DONE" sqlType="BOOLEAN" precision="1" scale="0" nullable="true" jdbcType="16"/>
+      <primary-key name="CONSTRAINT_2" columns="TASK_ID"/>
+    </table>
+    <table name="TODOLIST" schema="PUBLIC" catalog="DEFAULT" type="TABLE">
+      <column name="TASK_ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfQzJEMzI2QTRfODM0NV80Qzg2X0I4MjNfNTg4ODRCNTk4OTcxKQ==" autoIncrement="true"/>
+      <column name="DESCRIPTION" sqlType="CLOB" precision="2147483647" scale="0" nullable="true" jdbcType="2005"/>
+      <column name="CREATE_DATE" sqlType="DATE" precision="8" scale="0" nullable="true" jdbcType="91"/>
+      <column name="DUE_DATE" sqlType="DATE" precision="8" scale="0" nullable="true" jdbcType="91"/>
+      <column name="DONE" sqlType="BOOLEAN" precision="1" scale="0" nullable="true" jdbcType="16"/>
+      <primary-key name="CONSTRAINT_E" columns="TASK_ID"/>
+    </table>
+  </data-source>
+</component>
