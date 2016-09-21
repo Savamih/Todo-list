@@ -21,22 +21,25 @@ public class TaskDAOImpl implements TaskDAO {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
+    private TaskSetter taskSetter;
+
+    @Autowired
     public TaskDAOImpl(DataSource dataSource){
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override
     public void saveOrUpdate(Task task) {
-        if (task.getTask_id() > 0){ //TODO: not null
-            String sql = "UPDATE task SET description=?, create_date=?" +
-                    "due_date=?, done=? WHERE task_id=?";
-            jdbcTemplate.update(sql,task.getDescription(), task.getCreate_date(),
-                    task.getDue_date(), task.getDone(), task.getTask_id());
+        if (task.getTask_id() > 0){
+            String sql = "UPDATE task SET DESCRIPTION=?, DUE_TIME=?," +
+                    " ISWASTED=?, ISDONE=? WHERE task_id=?";
+            jdbcTemplate.update(sql,task.getDescription(), task.getDue_time(),
+                    task.getWasted(), task.getDone(), task.getTask_id());
         }else {
-            String sql = "INSERT INTO task (description, create_date," +
-                    " due_date) VALUES (?,?,?,?)";
-            jdbcTemplate.update(sql, task.getDescription(), task.getCreate_date(),
-                    task.getDue_date(), task.getDone());
+            String sql = "INSERT INTO task (description, DUE_TIME," +
+                    " ISWASTED, ISDONE) VALUES (?,?,?,?)";
+            jdbcTemplate.update(sql, task.getDescription(), task.getDue_time(),
+                    task.getWasted(), task.getDone());
         }
 
     }
@@ -54,15 +57,10 @@ public class TaskDAOImpl implements TaskDAO {
             @Override
             public Task extractData(ResultSet resultSet) throws SQLException, DataAccessException {
                 if (resultSet.next()){
-                    Task task = new Task();
 
-                    task.setTask_id(resultSet.getInt("task_id"));
-                    task.setDescription(resultSet.getString("description"));
-                    task.setCreate_date(resultSet.getDate("create_date"));
-                    task.setDue_date(resultSet.getDate("due_date"));
-                    task.setDone(resultSet.getBoolean("done"));
-                    return task;
+                   return taskSetter.taskSet(resultSet);
                 }
+
                 return null;
             }
         });
@@ -71,18 +69,11 @@ public class TaskDAOImpl implements TaskDAO {
 
     @Override
     public List<Task> list() {
-        String sql = "SELECT * FROM task";
+        String sql = "SELECT * FROM task ORDER BY DUE_TIME";
         List<Task> listTask = jdbcTemplate.query(sql, new RowMapper<Task>(){
             public Task mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Task task = new Task();
 
-             //   task.setTask_id(rs.getInt("task_id")); //TODO: list without id
-                task.setDescription(rs.getString("description"));
-                task.setCreate_date(rs.getDate("create_date"));
-                task.setDue_date(rs.getDate("due_date"));
-                task.setDone(rs.getBoolean("done"));
-
-                return task;
+               return taskSetter.taskSet(rs);
             }
         });
 

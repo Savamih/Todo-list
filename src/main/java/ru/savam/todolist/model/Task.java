@@ -1,6 +1,8 @@
 package ru.savam.todolist.model;
 
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 
@@ -8,19 +10,18 @@ public class Task {
 
     private int task_id;
     private String description;
-    private Date create_date;
-    private Date due_date;
-    private Boolean done;
+    private Time due_time;
+    private Boolean isWasted;
+    private Boolean isDone;
 
-    public Task(){
-
+    public Task() {
     }
 
-    public Task(String description, Date create_date, Date due_date, Boolean done) {
+    public Task(String description, Time due_time, Boolean isWasted, Boolean isDone) {
         this.description = description;
-        this.create_date = create_date;
-        this.due_date = due_date;
-        this.done = done;
+        this.due_time = due_time;
+        this.isWasted = isWasted;
+        this.isDone = isDone;
     }
 
     public int getTask_id() {
@@ -39,27 +40,27 @@ public class Task {
         this.description = description;
     }
 
-    public Date getCreate_date() {
-        return create_date;
+    public Time getDue_time() {
+        return due_time;
     }
 
-    public void setCreate_date(Date create_date) {
-        this.create_date = create_date;
+    public void setDue_time(Time due_time) {
+        this.due_time = due_time;
     }
 
-    public Date getDue_date() {
-        return due_date;
+    public Boolean getWasted() {
+        return isWasted;
     }
 
-    public void setDue_date(Date due_date) {
-        this.due_date = due_date;
+    public void setWasted(Boolean wasted) {
+        isWasted = wasted;
     }
 
     public Boolean getDone() {
-        return done;
+        return isDone;
     }
 
     public void setDone(Boolean done) {
-        this.done = done;
+        isDone = done;
     }
 }
