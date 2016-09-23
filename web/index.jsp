@@ -11,6 +11,6 @@
     <title>$Title$</title>
   </head>
   <body>
-  <a href="todo/list.html">click</a>
+  <a href="todo/list">click</a>
   </body>
 </html>

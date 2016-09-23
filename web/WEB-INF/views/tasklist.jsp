@@ -14,9 +14,49 @@
         .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
         .tg .tg-4eph{background-color:#f9f9f9}
     </style>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+        var prefix = '/done';
+
+        var ChangeButtonIsWasted = function(id) {
+            $.ajax({
+                type: 'GET',
+                url:  prefix + '/wasted/'+ id,
+                dataType: 'json',
+                async: true,
+                success: function(result) {
+                    alert(result.task_id +' '+ result.Wasted);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.status + ' ' + jqXHR.responseText + 'error');
+                }
+            })
+        };
+
+        var ChangeButtonIsDone = function(id) {
+            $.ajax({
+                type: 'GET',
+                url:  prefix + '/done/'+ id,
+                dataType: 'json',
+                async: true,
+                success: function(result) {
+                    alert(result.task_id +' '+ result.Done);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.status + ' ' + jqXHR.responseText + 'error');
+                }
+            })
+
+        };
+
+    </script>
 </head>
 <body>
-<h1>Task List</h1>
+<div align="center">
+<h1>TODO List</h1>
 <h3><a href="/todo/newtask">New Task</a></h3>
 <table class="tg">
 
@@ -31,13 +71,16 @@
         <tr>
             <td>${task.description}</td>
             <td>${task.due_time}</td>
+
             <td>${task.wasted}</td>
-            <td>${task.done}</td>
+
+            <td><button type="button" onclick="ChangeButtonIsDone(${task.task_id})">${task.done}</button></td>
+
             <td><a href="<c:url value='/todo/edit?id=${task.task_id}'/>"> Edit </a></td>
             <td><a href="<c:url value='/todo/delete/${task.task_id}'/>"> Delete </a></td>
         </tr>
     </c:forEach>
-
+</div>
 </table>
 </body>
 </html>

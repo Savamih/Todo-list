@@ -1,9 +1,9 @@
-create table todolist(
-  task_id int null AUTO_INCREMENT,
+create table task(
+  task_id int not null AUTO_INCREMENT,
   description text,
-  create_date date,
-  due_date date,
-  done BOOLEAN,
+  due_time TIME,
+  iswasted BOOLEAN,
+  isdone BOOLEAN,
   PRIMARY KEY (task_id)
 );
 

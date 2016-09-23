@@ -1,9 +1,11 @@
 package ru.savam.todolist.model;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.BooleanSerializer;
+import com.fasterxml.jackson.databind.ser.std.DateSerializer;
+
 import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.Date;
 
 
 public class Task {
@@ -17,7 +19,8 @@ public class Task {
     public Task() {
     }
 
-    public Task(String description, Time due_time, Boolean isWasted, Boolean isDone) {
+    public Task(int task_id, String description, Time due_time, Boolean isWasted, Boolean isDone) {
+        this.task_id = task_id;
         this.description = description;
         this.due_time = due_time;
         this.isWasted = isWasted;
@@ -63,4 +66,5 @@ public class Task {
     public void setDone(Boolean done) {
         isDone = done;
     }
+
 }

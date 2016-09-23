@@ -1,10 +1,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Task Form</title>
+
 </head>
 <body>
+
+
+<div align="center">
 <h1>Task Form</h1>
 <form:form action="savetask" method="post" modelAttribute="task">
     <table>
@@ -15,7 +20,9 @@
         </tr>
         <tr>
             <td>Due time:</td>
-            <td><form:input path="due_time" /></td>
+            <td>
+                <form:input path="due_time" />
+            </td>
         </tr>
         <tr>
             <td>Wasted:</td>
@@ -30,5 +37,7 @@
         </tr>
     </table>
 </form:form>
+</div>
+
 </body>
 </html>
