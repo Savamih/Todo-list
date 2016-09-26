@@ -17,24 +17,14 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
+    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" />
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.2/jsgrid.min.js"></script>
+
     <script type="text/javascript">
 
         var prefix = '/done';
-
-        var ChangeButtonIsWasted = function(id) {
-            $.ajax({
-                type: 'GET',
-                url:  prefix + '/wasted/'+ id,
-                dataType: 'json',
-                async: true,
-                success: function(result) {
-                    alert(result.task_id +' '+ result.Wasted);
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    alert(jqXHR.status + ' ' + jqXHR.responseText + 'error');
-                }
-            })
-        };
 
         var ChangeButtonIsDone = function(id) {
             $.ajax({
@@ -43,7 +33,7 @@
                 dataType: 'json',
                 async: true,
                 success: function(result) {
-                    alert(result.task_id +' '+ result.Done);
+                    alert(result.task_id +' '+ result.done);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     alert(jqXHR.status + ' ' + jqXHR.responseText + 'error');
@@ -55,6 +45,8 @@
     </script>
 </head>
 <body>
+
+
 <div align="center">
 <h1>TODO List</h1>
 <h3><a href="/todo/newtask">New Task</a></h3>

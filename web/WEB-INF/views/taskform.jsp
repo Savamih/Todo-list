@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -24,14 +25,23 @@
                 <form:input path="due_time" />
             </td>
         </tr>
+
+        <c:if test="${!empty task.task_id}">
         <tr>
-            <td>Wasted:</td>
-            <td><form:input path="wasted" /></td>
+            <td><form:hidden path="wasted" /></td>
         </tr>
         <tr>
-            <td>Done:</td>
-            <td><form:input path="done" /></td>
+            <td><form:hidden path="done" /></td>
         </tr>
+        </c:if>
+
+        <tr>
+            <td><form:hidden path="wasted" value="${true}"/></td>
+        </tr>
+        <tr>
+            <td><form:hidden path="done" value="${true}"/></td>
+        </tr>
+
         <tr>
             <td colspan="2" align="center"><input type="submit" value="Save"></td>
         </tr>

@@ -28,6 +28,10 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.2.2" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.2.2" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.2.2" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Maven: javax.mail:mail:1.4" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.15" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.5" />
         </element>
       </element>
     </root>
