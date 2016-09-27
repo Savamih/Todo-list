@@ -22,15 +22,14 @@
       <primary-key name="CONSTRAINT_3" columns="CATEGORY_ID"/>
       <exported-key name="FK_M7N2T9NK7YJOE1TJXH91DU4L9" table="ARTICLE" schema="PUBLIC" catalog="DEFAULT" columns="CATEGORY"/>
       <exported-key name="FK_M7N2T9NK7YJOE1TJXH91DU4L9" table="ARTICLE" schema="PUBLIC" catalog="DEFAULT" columns="CATEGORY"/>
-      <exported-key name="FK_M7N2T9NK7YJOE1TJXH91DU4L9" table="ARTICLE" schema="PUBLIC" catalog="DEFAULT" columns="CATEGORY"/>
       <index name="UK_GONQEYN8OJX2EQODR4MQF0JJ9_INDEX_3" unique="true" columns="NAME"/>
     </table>
     <table name="TASK" schema="PUBLIC" catalog="DEFAULT" type="TABLE">
-      <column name="TASK_ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfREUzREI3MDBfRTBGNF80RTVFXzkxNTJfRkZFMzA1MTg4NDJEKQ==" autoIncrement="true"/>
-      <column name="DESCRIPTION" sqlType="CLOB" precision="2147483647" scale="0" nullable="true" jdbcType="2005"/>
-      <column name="DUE_TIME" sqlType="TIME" precision="6" scale="0" nullable="true" jdbcType="92"/>
-      <column name="ISWASTED" sqlType="BOOLEAN" precision="1" scale="0" nullable="true" jdbcType="16"/>
-      <column name="ISDONE" sqlType="BOOLEAN" precision="1" scale="0" nullable="true" jdbcType="16"/>
+      <column name="TASK_ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRDEzNUFDMURfNjZBOF80MjczX0ExNzlfNkE3NDg5NzI1QUQ0KQ==" autoIncrement="true"/>
+      <column name="DESCRIPTION" sqlType="CLOB" precision="2147483647" scale="0" nullable="false" jdbcType="2005"/>
+      <column name="DUE_TIME" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
+      <column name="ISWASTED" sqlType="BOOLEAN" precision="1" scale="0" nullable="false" jdbcType="16"/>
+      <column name="ISDONE" sqlType="BOOLEAN" precision="1" scale="0" nullable="false" jdbcType="16"/>
       <primary-key name="CONSTRAINT_2" columns="TASK_ID"/>
     </table>
     <table name="TODOLIST" schema="PUBLIC" catalog="DEFAULT" type="TABLE">

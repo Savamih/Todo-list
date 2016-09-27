@@ -69,7 +69,7 @@ public class TaskDAOImpl implements TaskDAO {
 
     @Override
     public List<Task> list() {
-        String sql = "SELECT * FROM task ORDER BY DUE_TIME";
+        String sql = "SELECT * FROM task";
         List<Task> listTask = jdbcTemplate.query(sql, new RowMapper<Task>(){
             public Task mapRow(ResultSet rs, int rowNum) throws SQLException {
 

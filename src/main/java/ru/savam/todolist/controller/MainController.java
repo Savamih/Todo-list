@@ -12,7 +12,7 @@ import ru.savam.todolist.model.Task;
 import ru.savam.todolist.service.TodoService;
 
 import java.beans.PropertyEditorSupport;
-import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -27,12 +27,12 @@ public class MainController {
     private TodoService todoService;
 
     @InitBinder
-    public void binder(WebDataBinder binder) {binder.registerCustomEditor(Time.class,
+    public void binder(WebDataBinder binder) {binder.registerCustomEditor(Timestamp.class,
             new PropertyEditorSupport() {
                 public void setAsText(String value) {
                     try {
-                        Date parsedDate = new SimpleDateFormat("HH:mm").parse(value);
-                        setValue(new Time(parsedDate.getTime()));
+                        Date parsedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(value);
+                        setValue(new Timestamp(parsedDate.getTime()));
                     } catch (ParseException e) {
                         setValue(null);
                     } catch (java.text.ParseException e) {
@@ -45,16 +45,23 @@ public class MainController {
     @RequestMapping(value = "todo/list", method = RequestMethod.GET)
     public String listTask(Model model){
         List<Task> listTask = todoService.list();
-        Date date = new Date();
-        logger.info("Current time" + date);
-        for (Task t : listTask) {
-            if(t.getDue_time().compareTo(date) > 0){
-                t.setWasted(true);
-            } else if(t.getDue_time().compareTo(date) < 0){
+
+        Timestamp time = new Timestamp(new Date().getTime());
+
+        logger.info("Current time: " + time);
+        logger.info("Current time in long: " + time.getTime());
+        logger.info("Due_time: " + new Date(listTask.get(2).getDue_time().getTime()));
+        logger.info("Due_time in long: " + listTask.get(2).getDue_time().getTime());
+
+        for (Task t : listTask) { // filtering wasted task
+            if(t.getDue_time().after(time)){
                 t.setWasted(false);
+            } else if(t.getDue_time().before(time)){
+                t.setWasted(true);
             }else t.setWasted(false);
-            logger.info("Current time:" + date + "Due time:" + t.getDue_time());
+            logger.info("Current time:" + time + "Due time:" + t.getDue_time());
         }
+
         model.addAttribute("listTask", listTask);
 
         return "tasklist";
@@ -74,6 +81,10 @@ public class MainController {
 
     @RequestMapping(value = "todo/savetask", method = RequestMethod.POST)
     public String saveTask(@ModelAttribute("task") Task task){
+        if(!(task.getTask_id()>0)){
+            task.setWasted(false);
+            task.setDone(false);
+        }
         todoService.saveOrUpdate(task);
         return "redirect:/todo/list";
     }
