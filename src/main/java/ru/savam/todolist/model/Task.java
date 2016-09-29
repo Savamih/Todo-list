@@ -2,13 +2,19 @@ package ru.savam.todolist.model;
 
 
 
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.util.Date;
 
 public class Task {
 
     private int task_id;
+    @NotNull(message = "Description shouldn't be empty")
     private String description;
+    @NotNull(message = "Time shouldn't be empty")
     private Timestamp due_time;
     private Boolean isWasted;
     private Boolean isDone;
