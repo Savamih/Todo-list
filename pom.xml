@@ -6,7 +6,11 @@
 
     <groupId>savam.ru</groupId>
     <artifactId>TODOlist</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>scjp-study</module>
+    </modules>
 
     <properties>
         <spring-framework-version>4.0.3.RELEASE</spring-framework-version>
